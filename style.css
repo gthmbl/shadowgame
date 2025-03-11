@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-container {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background: #222;
+    border: 2px solid white;
+    overflow: hidden;
+}
+
+#player {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: white;
+    top: 50%;
+    left: 10%;
+}
+
+.spotlight {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 100, 0.5);
+    border-radius: 50%;
+    top: 20%;
+    left: 50%;
+    animation: moveSpotlight 3s infinite alternate;
+}
+
+.shadow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: black;
+    opacity: 0.8;
+    top: 60%;
+    left: 30%;
+}
+
+@keyframes moveSpotlight {
+    from { left: 10%; }
+    to { left: 80%; }
+}
