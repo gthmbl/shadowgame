@@ -4,7 +4,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const goal = document.getElementById("goal");
     const walls = document.querySelectorAll(".wall"); // Select all walls
 
-    let playerX = 100, playerY = 150;
+    const spotlightPositions = [
+        { x: 60, y: 60 }, { x: 250, y: 60 }, { x: 450, y: 60 },
+        { x: 60, y: 180 }, { x: 250, y: 180 }, { x: 450, y: 180 },
+        { x: 60, y: 300 }, { x: 250, y: 300 }, { x: 450, y: 300 }
+    ];
+    
+    let playerX = 20, playerY = 150;
     const speed = 10;
 
     document.addEventListener("keydown", function (event) {
@@ -28,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
         checkCollision();
     });
-    
 
     function isCollidingWithWall(x, y) {
         let playerWidth = 20;  // Player's size
@@ -52,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return false;
     }
-    
 
     function checkCollision() {
         let playerRect = player.getBoundingClientRect();
@@ -79,4 +83,26 @@ document.addEventListener("DOMContentLoaded", function () {
             location.reload();
         }
     }
+
+    function moveSpotlightSmoothly() {
+        function moveToNextPosition() {
+            // Pick a new random position
+            let randomIndex = Math.floor(Math.random() * spotlightPositions.length);
+            let nextPos = spotlightPositions[randomIndex];
+    
+            // Move faster (reduced duration)
+            spotlight.style.transition = "top 1.5s linear, left 1.5s linear";
+            spotlight.style.left = nextPos.x + "px";
+            spotlight.style.top = nextPos.y + "px";
+    
+            // Keep moving continuously
+            setTimeout(moveToNextPosition, 1500); // Matches transition speed
+        }
+    
+        moveToNextPosition(); // Start the movement loop
+    }
+    
+
+    // ✅ Start moving the spotlight continuously
+    moveSpotlightSmoothly();
 });

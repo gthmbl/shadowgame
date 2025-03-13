@@ -45,10 +45,11 @@ body {
     height: 100px;
     background: rgba(255, 255, 100, 0.5);
     border-radius: 50%;
-    top: 20%;
-    left: 50%;
-    animation: moveSpotlight 3s infinite alternate;
+    top: 60px; /* Start in a valid position */
+    left: 60px;
+    transition: top 1s, left 1s; /* Smooth movement */
 }
+
 
 
 @keyframes moveSpotlight {
